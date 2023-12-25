@@ -27,6 +27,18 @@ async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
     
+
+    const serviceCollection = client.db('mechanicDB').collection('services');
+
+    app.get('/services', async (req, res) => {
+        const cursor = serviceCollection.find();
+        const result = await cursor.toArray();
+        res.send(result);
+    })
+
+
+
+
     // Send a ping to confirm a successful connection
    
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
